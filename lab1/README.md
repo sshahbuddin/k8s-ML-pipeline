@@ -9,12 +9,10 @@ Build the application with 'docker build . -t lab1_hello_app:v1'.
 Run the application with  on port 8000 with 'docker run -d -p 8000:8000 --name lab1_hello_app lab1_hello_app:v1'.
 
 4)  How to test the application
-To test the application, run the ./tests/test_main.py script to assert the test cases pass. If there are any additional test cases that you would like to test, add them to the script before running. 
-
-To manually test, navigate to "http://localhost:8000/" and test each endpoint 
-a) "/hello?name=nameparamter"
-b) "docs"
-c) "openapi.json"
+To test the application, run the ./tests/test_main.py script to assert the test cases pass. If there are any additional test cases that you would like to test, add them to the script before running. To manually test, navigate to "http://localhost:8000/" and test each endpoint 
+    a) "/hello?name=nameparamter"
+    b) "docs"
+    c) "openapi.json"
 
 # Questions
 1) What status code should be raised when a query parameter does not match our expectations?
