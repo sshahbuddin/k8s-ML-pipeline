@@ -1,0 +1,6 @@
+#ignore .pytest_cache
+.pytest_cache
+
+#ignore pycache in src and tests
+src/__pycache__/*
+tests/__pycache__/*
