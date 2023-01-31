@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "building docker image with name lab1_fastAPI from Dockerfile"
-docker build . -t lab1_hello_app:v1
+docker build ./lab1 -t lab1_hello_app:v1
 
 echo "running built docker container in detached mode"
 docker run -d -p 8000:8000 --name lab1_hello_app lab1_hello_app:v1
