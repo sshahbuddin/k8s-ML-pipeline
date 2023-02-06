@@ -18,7 +18,7 @@ To test the application, run the ./tests/test_src.py script to assert the test c
 
 # Questions
 1) What status code should be raised when a query parameter does not match our expectations?  
-  A 400, Bad Request, is returned when a query parameter does not match the expected input.
+  A 422, Unprocessable Entity, is returned when a query parameter does not match the expected input because the request was well-formed but was unable to be followed due to semantic errors.
 
 2) What does Python Poetry handle for us?  
   Python Poetry manages our dependencies to ensure that the required versions of the used packages are used in the application build. 
