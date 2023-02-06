@@ -12,7 +12,7 @@ async def root():
 async def hello_user(name: str = ""):
     if name == "":
         raise HTTPException(
-            status_code=400,  # 400 status for bad request, incorrect query parameter provided by user
+            status_code=422,  # 422 status The request was well-formed but was unable to be followed due to semantic errors.
             detail="Please provide a valid 'name' query parameter",
         )
     greeting = str("hello " + name)

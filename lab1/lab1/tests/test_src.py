@@ -13,7 +13,7 @@ def test_read_main():
 
 def test_greeting_null_query():
     response = client.get("/hello/")
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert response.json() == {
         "detail": "Please provide a valid 'name' query parameter"
     }

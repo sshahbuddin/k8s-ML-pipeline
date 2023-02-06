@@ -6,11 +6,12 @@
   Build the application with 'docker build . -t lab1_hello_app:v1'.
 
 3)  How to run the application  
-  Run the application with  on port 8000 with 'docker run -d -p 8000:8000 --name lab1_hello_app lab1_hello_app:v1'.
+  Run the application with  on port 8000 with 'docker run -d -p 8000:8000 --name lab1_hello_app lab1_hello_app:v1'.  
+    After you are finished running the application, stop the container with 'docker stop lab1_hello_app' followed by removing the container with 'docker rm lab1_hello_app'
 
 4)  How to test the application
-To test the application, run the ./tests/test_main.py script to assert the test cases pass. If there are any additional test cases that you would like to test, add them to the script before running.  
-  To manually test, navigate to "http://localhost:8000/" and test each endpoint  
+To test the application, run the ./tests/test_src.py script to assert the test cases pass by using 'poetry run pytest'. If there are any additional test cases that you would like to test, add them to the script before running.  
+  To manually test, navigate to "http://localhost:8000/" and test each endpoint after running the application.  
     a) "/hello?name=nameparamter"  
     b) "docs"  
     c) "openapi.json"
