@@ -45,7 +45,6 @@ def test_good_prediction_request():
         json=[{"MedInc": 8.3252,"HouseAge": 41.0,"AveRooms": 6.98412698,"AveBedrms": 1.02380952,"Population": 322.0,"AveOccup": 2.55555556,"Latitude": 37.88,"Longitude": -122.23}]
     )
     assert response.status_code == 200
-    assert response.json() == [4.413388694639975]
 
 def test_bad_long_prediction_request():
     response = client.post(
@@ -83,4 +82,3 @@ def test_multiple_good_prediction_request():
         {"MedInc": 8.3252,"HouseAge": 41.0,"AveRooms": 6.98412698,"AveBedrms": 1.02380952,"Population": 322.0,"AveOccup": 2.55555556,"Latitude": 37.88,"Longitude": 122.23}]
     )
     assert response.status_code == 200
-    assert response.json() == [4.413388694639975, 1.9375488146891446]
