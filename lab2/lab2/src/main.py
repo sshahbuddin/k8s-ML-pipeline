@@ -1,8 +1,9 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, ValidationError, validator
+from pydantic import BaseModel, ValidationError, validator, parse_obj_as
 import numpy as np
 import joblib
 from datetime import datetime
+from typing import List
 
 app = FastAPI()
 model = joblib.load("./trainer/model_pipeline.pkl")
@@ -47,10 +48,11 @@ async def hello_user(name: str = ""):
     return greeting
 
 @app.post("/predict")
-async def predict_home_price(home:House):
-    features = dict(home)
-    prediction = model.predict([[features[key] for key in features.keys()]]) 
-    return prediction[0]
+async def predict_home_price(home:List[House]):
+    homes = np.array(home)
+    features = [dict(x) for x in homes]
+    return [model.predict([[feature[key] for key in feature.keys()]])[0]
+                   for feature in features]
 
 @app.get("/health")
 async def health():
