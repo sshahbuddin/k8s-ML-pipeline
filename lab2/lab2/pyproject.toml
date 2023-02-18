@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "src"
+version = "0.1.0"
+description = ""
+authors = ["Shehzad Shahbuddin <shehzad@berkeley.edu>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+fastapi = "^0.89.1"
+uvicorn = "^0.20.0"
+requests = "^2.28.2"
+pydantic = "^1.10.4"
+scipy = "^1.10.0"
+scikit-learn = "^1.2.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+httpx = "^0.23.3"
+isort = "^5.11.4"
+black = "^22.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
