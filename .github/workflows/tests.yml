@@ -25,6 +25,7 @@ jobs:
         version: latest
 
     - name: Install environment
+      working-directory: ./lab2/lab2
       run: poetry install
 
     - name: Run tests
