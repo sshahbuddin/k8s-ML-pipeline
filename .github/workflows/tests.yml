@@ -3,7 +3,9 @@ name: Python tests
 on:
   pull_request:
 
-working-directory: ./lab2/lab2
+defaults:
+  run:
+    working-directory: ./lab2/lab2
 
 jobs:
   test:
