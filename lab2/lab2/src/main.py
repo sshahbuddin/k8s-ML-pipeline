@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ValidationError, validator, parse_obj_as
+from typing import Any
 import numpy as np
 import joblib
 from datetime import datetime
@@ -32,6 +33,9 @@ class House(BaseModel):
             raise ValueError('not a valid longitude')
         return v
 
+class Prediction(BaseModel):
+    prediction: list
+
 @app.get("/")
 async def root():
     raise HTTPException(status_code=404, detail="not implemented")  # endpoint not found
@@ -47,12 +51,13 @@ async def hello_user(name: str = ""):
     greeting = str("hello " + name)
     return greeting
 
-@app.post("/predict")
+@app.post("/predict", response_model=Prediction)
 async def predict_home_price(home:List[House]):
     homes = np.array(home)
     features = [dict(x) for x in homes]
-    return [model.predict([[feature[key] for key in feature.keys()]])[0]
+    prediction = [model.predict([[feature[key] for key in feature.keys()]])[0]
                    for feature in features]
+    return {"prediction":prediction}
 
 @app.get("/health")
 async def health():

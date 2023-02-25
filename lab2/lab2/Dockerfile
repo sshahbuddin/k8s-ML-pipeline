@@ -18,7 +18,7 @@ RUN python -m venv --copies ./venv
 RUN . /venv/bin/activate && poetry install --no-dev
 
 # run stage
-FROM python:3.10-slim-buster as run
+FROM python:3.10-slim as run
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -31,6 +31,9 @@ ENV PATH /venv/bin:$PATH
 
 # copy src
 COPY . ./
+
+HEALTHCHECK --interval=5s --timeout=3s \
+  CMD curl -f http://localhost/health || exit 1
 
 #run uvicorn
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
