@@ -7,7 +7,7 @@ from datetime import datetime
 from typing import List
 
 app = FastAPI()
-model = joblib.load("./trainer/model_pipeline.pkl")
+model = joblib.load("./src/model_pipeline.pkl")
 
 class House(BaseModel):
     MedInc: float

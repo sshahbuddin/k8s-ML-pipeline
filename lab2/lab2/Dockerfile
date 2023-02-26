@@ -26,7 +26,7 @@ ENV PATH /venv/bin:$PATH
 # copy src
 COPY . ./
 
-HEALTHCHECK --start-period=30s CMD python -c "import requests; requests.get('http://localhost:8000/health', timeout=2)"
+HEALTHCHECK --start-period=5s CMD python -c "import requests; requests.get('http://localhost:8000/health', timeout=2)"
 
 #run uvicorn
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
