@@ -38,7 +38,7 @@ echo "port forward predict-api deployment"
 kubectl port-forward deployment/predict-api 8000:8000 &
 
 echo "port forward redis to check cache"
-kubectl port-forward deployment/predict-api 6379:6379 &
+kubectl port-forward deployment/redis 6379:6379 &
 
 echo "liveness check"
 while ! nc -z localhost 8000; do echo "Service is not yet running on port 8000, waiting...";sleep 5;done
