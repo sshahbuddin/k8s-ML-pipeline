@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: predict-api
+  namespace: w255
+  labels:
+    app: predict-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: predict-api
+  template:
+    metadata:
+      labels:
+        app: predict-api
+    spec:
+      initContainers:
+        - name: init-verify-redis-service-dns
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "until nc -vz redis 6379; do echo 'waiting for redis service from DNS'; sleep 2; done",
+            ]
+        - name: init-verify-redis-ready
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "until (printf 'PING\r\n';) | nc redis 6379; do echo 'waiting for redis to PONG'; sleep 1; done",
+            ]
+      containers:
+        - name: predict-api
+          image: predict-api:v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+              name: predict-api
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 10
