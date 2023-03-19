@@ -20,7 +20,6 @@ model = joblib.load("./src/model_pipeline.pkl")
 logger = logging.getLogger(__name__)
 LOCAL_REDIS_URL = "redis://redis:6379"
 
-
 @app.on_event("startup")
 def startup():
     HOST_URL = os.environ.get("REDIS_URL", LOCAL_REDIS_URL)
