@@ -25,13 +25,10 @@ kubectl config set-context --current --namespace=w255
 echo "apply deployments and services"
 kubectl apply -f infra
 
-echo "check infra"
-kubectl get all
+echo "wait until pod is ready"
+kubectl wait --for=condition=Ready pod -l app=predict-api -n w255
 
-echo "pod readiness test"
-while kubectl get pods -o jsonpath='{.items[0].status.conditions[1].status}' | grep False; do echo "Pod not ready, waiting...";sleep 5;done
-
-echo "check infra again"
+echo "check infra to confirm"
 kubectl get all
 
 echo "port forward predict-api deployment"
@@ -39,15 +36,6 @@ kubectl port-forward deployment/predict-api 8000:8000 &
 
 echo "port forward redis to check cache"
 kubectl port-forward deployment/redis 6379:6379 &
-
-echo "liveness check"
-while ! nc -z localhost 8000; do echo "Service is not yet running on port 8000, waiting...";sleep 5;done
-
-echo "check infra again"
-kubectl get all
-
-echo "check infra again"
-kubectl get all
 
 echo "testing '/hello' endpoint with ?name=Shehzad"
 curl -o /dev/null -s -w "%{http_code}\n" -X GET "http://localhost:8000/hello?name=Shehzad"
@@ -132,5 +120,6 @@ kubectl delete --all deployments
 echo "delete w255 namespace"
 kubectl delete namespace w255
 
-echo "stop minikube"
+echo "stop and minikube"
 minikube stop
+minikube delete
