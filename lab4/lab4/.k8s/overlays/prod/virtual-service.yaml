@@ -5,9 +5,9 @@ metadata:
   name: lab4
 spec:
   hosts:
-    - winegarj.mids255.com
+    - shehzad.mids255.com
   gateways:
-    - istio-ingress/winegarj-gateway
+    - istio-ingress/shehzad-gateway
   http:
     - match:
         - uri:

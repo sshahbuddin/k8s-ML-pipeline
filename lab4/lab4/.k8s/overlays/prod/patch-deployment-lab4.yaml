@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: lab4
-          image: w255mids.azurecr.io/winegarj/lab4:9b7cdbc0
+          image: w255mids.azurecr.io/shehzad/lab4:e3b1d48
           resources:
             requests:
               cpu: 200m
