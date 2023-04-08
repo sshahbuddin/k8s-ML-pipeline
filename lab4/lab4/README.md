@@ -10,10 +10,10 @@
   kubectl apply -k .k8s/overlays/prod
 
 3)  Use the following curl to test the application:  
-  curl -X 'POST' \
-    'https://shehzad.mids255.com/predict' \
-    -H 'accept: application/json' \
-    -H 'Content-Type: application/json' \
+  curl -X 'POST' \\
+    'https://shehzad.mids255.com/predict' \\
+    -H 'accept: application/json' \\
+    -H 'Content-Type: application/json' \\
     -d '{
     "homes": [
       {
