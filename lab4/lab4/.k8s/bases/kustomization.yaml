@@ -2,7 +2,7 @@
 namespace: shehzad
 resources:
   - config-map.yaml
-  - persistent-volume.yaml
+  # - persistent-volume.yaml
   - deployment-lab4.yaml
   - deployment-redis.yaml
   - service-lab4.yaml
