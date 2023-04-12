@@ -61,10 +61,10 @@ class HouseList(BaseModel):
         return np.vstack([x.to_np() for x in self.houses])
 
 class Prediction(BaseModel):
-    prediction: list
+    prediction: list[float]
 
-class PredictionList(BaseModel):
-    list = list[Prediction]
+# class PredictionList(BaseModel):
+#     list = list[Prediction]
 
 @app.get("/")
 async def root():
