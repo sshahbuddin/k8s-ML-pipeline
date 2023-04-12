@@ -37,6 +37,9 @@ class House(BaseModel):
     Latitude: float
     Longitude: float
     
+    def to_np(self):
+        return np.array(list(vars(self).values())).reshape(1, 8)
+    
     #Latitude is specified in degrees within the range [-90, 90]
     @validator('Latitude')
     def lat_must_be_in_range(cls, v):
@@ -52,7 +55,10 @@ class House(BaseModel):
         return v
 
 class HouseList(BaseModel):
-    homes: list[House]
+    houses: list[House]
+
+    def to_np(self):
+        return np.vstack([x.to_np() for x in self.houses])
 
 class Prediction(BaseModel):
     prediction: list
@@ -78,13 +84,9 @@ async def hello_user(name: str = ""):
 
 @app.post("/predict", response_model=Prediction)
 @cache(expire=60)
-async def predict_home_price(homes:HouseList):
-    houses_dict = homes.dict()
-    house_list = houses_dict['homes']
-    house_vals = [list(x.values()) for x in house_list]
-    house_array = np.array(house_vals)
-    prediction = model.predict(house_array)
-    return {"prediction":list(prediction)}
+async def predict_home_price(houses:HouseList):
+    predictions = model.predict(houses.to_np())
+    return {"predictions": list(predictions)}
 
 @app.get("/health")
 async def health():
