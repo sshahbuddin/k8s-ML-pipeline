@@ -20,7 +20,7 @@ When the load begin to ramp up, the application takes ~1 minute to scale up to h
 
 The image below illustrates this Finding. Notice the spike and the gradual decrease once the pods are scaled out.
 
-![alt text](https://github.com/sshahbuddin/UCB-W255/spring23-sshahbuddin/lab5/master/cache_90_workload.png?raw=true)
+![alt text](https://github.com/UCB-W255/spring23-sshahbuddin/blob/master/lab5/cache_90_workload.png?raw=true)
 
 
 ### Finding 1
