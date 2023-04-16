@@ -54,7 +54,7 @@ Comparing a cold start on the pods at 90% cache hit rate vs 50% cache hit rate, 
 
 The below image illustrates the 50% cache hit rate cold starts. Note the delayed time back to optimal performance compared to the 90% cache hit rate cold start in [Finding 1](#finding-1)
 
-![alt text](https://github.com/UCB-W255/spring23-sshahbuddin/blob/master/lab5/cache_90_10_50_90_workload.png?raw=true)
+![alt text](https://github.com/UCB-W255/spring23-sshahbuddin/blob/master/lab5/cache_50_workload_start.png?raw=true)
 
 ## Conclusion
 
