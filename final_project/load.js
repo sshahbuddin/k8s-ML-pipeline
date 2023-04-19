@@ -38,7 +38,7 @@ const generator = (cacheRate) => {
   }
 }
 
-const NAMESPACE = shehzad
+const NAMESPACE = 'shehzad'
 const BASE_URL = `https://${NAMESPACE}.mids255.com`;
 const CACHE_RATE = .95
 
